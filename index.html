@@ -47,27 +47,24 @@
 
   .field{margin-bottom:16px;}
   .field label{display:block; font-size:11px; text-transform:uppercase; color:var(--mist); margin-bottom:7px; font-weight:600;}
-  .field .input-shell{border-radius:var(--radius-sm); background:var(--void); border:1px solid rgba(255,255,255,0.08); position:relative;}
+  .field .input-shell{border-radius:var(--radius-sm); background:var(--void); border:1px solid rgba(255,255,255,0.08);}
   .field input{width:100%; background:transparent; border:none; outline:none; color:var(--ice); padding:13px 14px; font-size:15px;}
   .field input.otp-input{text-align:center; font-size:22px; letter-spacing:0.4em;}
   .phone-prefix{display:flex; align-items:center;}
   .prefix-label{padding:13px 12px; color:var(--mist); border-right:1px solid rgba(255,255,255,0.08);}
 
-  /* PREMIUM ZONE DROP RESTORED */
   .upload-box{position:relative; border:1.5px dashed rgba(168,85,247,0.4); border-radius:var(--radius-sm); background:rgba(168,85,247,0.04); padding:22px; text-align:center;}
-  .upload-box input[type="file"]{position:absolute; inset:0; opacity:0; cursor:pointer;}
+  .upload-box input[type="file"]{position:absolute; inset:0; opacity:0; cursor:pointer; width:100%; height:100%;}
   .upload-box .up-icon{font-size:26px; margin-bottom:8px;}
   .upload-preview{margin-top:12px; display:none; align-items:center; gap:10px; color:var(--go); font-size:12.5px;}
   .upload-preview img{width:38px; height:38px; border-radius:8px; object-fit:cover;}
 
   .btn{display:inline-flex; align-items:center; justify-content:center; border:none; border-radius:var(--radius-sm); font-weight:600; padding:12px 20px;}
   .btn-primary{width:100%; color:#08060d; background:var(--grad-drip); padding:14px 20px;}
-  .btn-secondary-line{width:100%; background:transparent; color:var(--mist); border:1px solid var(--line); margin-top:10px;}
   .btn-accent{color:#08060d; background:var(--grad-drip); box-shadow:0 8px 22px -6px rgba(168,85,247,0.5);}
   .btn-ghost{background:transparent; border:1px solid var(--line); color:var(--mist); padding:9px 16px; border-radius:var(--radius-sm);}
   
-  /* 🌟 STYLISH TRASH DELETE CONFIGURATION */
-  .btn-delete{background:rgba(255,84,112,0.15); color:var(--danger); border:1px solid rgba(255,84,112,0.3); padding:6px 12px; border-radius:6px; font-size:12px;}
+  .btn-delete{background:rgba(255,84,112,0.12); color:var(--danger); border:1px solid rgba(255,84,112,0.25); padding:6px 14px; border-radius:6px; font-size:12px; font-weight:600;}
   .btn-delete:hover{background:var(--danger); color:#000;}
 
   #dashboard{display:none; min-height:100vh; flex-direction:column;}
@@ -114,8 +111,8 @@
     <div class="login-logo-badge"><span class="badge-fallback">TT</span></div>
     <div class="login-tag">Seller Control Panel</div>
     <div class="auth-tabs">
-      <button class="auth-tab active" onclick="switchTab('login')">Sign in</button>
-      <button class="auth-tab" onclick="switchTab('signup')">Create account</button>
+      <button class="auth-tab active" id="tabL" onclick="switchTab('login')">Sign in</button>
+      <button class="auth-tab" id="tabS" onclick="switchTab('signup')">Create account</button>
     </div>
     <div class="auth-card">
       <div id="loginFlow">
@@ -158,7 +155,7 @@
   <header class="topbar">
     <div class="topbar-left"><div class="topbar-brand"><span class="name">TRENDTEES <span class="glow-text">STUDIO</span></span></div></div>
     <div class="topbar-right">
-      <div class="user-chip"><div class="user-avatar">T</div><div class="uid" id="userIdDisplay">—<small>Logged in</small></div></div>
+      <div class="user-chip"><div class="user-avatar">T</div><div class="uid" id="userIdDisplay">—<small>Owner</small></div></div>
       <button class="btn btn-ghost" onclick="location.reload()">Log out</button>
     </div>
   </header>
@@ -174,42 +171,42 @@
     <main class="content">
       <section class="panel active" id="panel-overview">
         <div class="stat-row">
-          <div class="stat-card"><div class="stat-label">Products</div><div class="stat-val grad" id="statProducts">0</div></div>
-          <div class="stat-card"><div class="stat-label">Units</div><div class="stat-val" id="statUnits">0</div></div>
-          <div class="stat-card"><div class="stat-label">Orders</div><div class="stat-val" id="statOrders">0</div></div>
-          <div class="stat-card"><div class="stat-label">Pending</div><div class="stat-val" id="statPending">0</div></div>
+          <div class="stat-card"><div class="stat-label">Products Listed</div><div class="stat-val grad" id="statProducts">0</div></div>
+          <div class="stat-card"><div class="stat-label">Total Units</div><div class="stat-val" id="statUnits">0</div></div>
+          <div class="stat-card"><div class="stat-label">Orders Received</div><div class="stat-val" id="statOrders">0</div></div>
+          <div class="stat-card"><div class="stat-label">Pending Shipment</div><div class="stat-val" id="statPending">0</div></div>
         </div>
       </section>
 
       <section class="panel" id="panel-account">
-        <div class="card"><div id="profileNameDisplay">—</div><div id="profileMobileDisplay">—</div></div>
+        <div class="card"><div id="profileNameDisplay" style="font-size:18px; font-weight:700;">—</div><div id="profileMobileDisplay" style="color:var(--mist); margin-top:4px;">—</div></div>
       </section>
 
       <section class="panel" id="panel-inventory">
         <div class="card">
           <form id="productForm">
             <div class="form-grid">
-              <div class="field"><label>Item Name</label><div class="input-shell"><input type="text" id="pName"></div></div>
-              <div class="field"><label>Price</label><div class="input-shell"><input type="number" id="pPrice"></div></div>
-              <div class="field full"><label>Description</label><textarea id="pDesc"></textarea></div>
-              <div class="field"><label>Stock</label><div class="input-shell"><input type="number" id="pStock"></div></div>
+              <div class="field"><label>Item Name</label><div class="input-shell"><input type="text" id="pName" placeholder="e.g. Oversized Drip T-Shirt"></div></div>
+              <div class="field"><label>Price (₹)</label><div class="input-shell"><input type="number" id="pPrice" placeholder="e.g. 799"></div></div>
+              <div class="field full"><label>Description</label><textarea id="pDesc" placeholder="Streetwear item info..."></textarea></div>
+              <div class="field"><label>Stock Count</label><div class="input-shell"><input type="number" id="pStock" placeholder="50"></div></div>
               <div class="field">
-                <label>Upload Image</label>
+                <label>Upload Image Layout</label>
                 <div class="upload-box">
                   <input type="file" id="pImage" accept="image/*">
                   <div class="up-icon">⇪</div>
                   <div class="up-text">Click or drop an image</div>
                 </div>
-                <div class="upload-preview" id="uploadPreview"><img id="uploadPreviewImg"><span id="uploadPreviewName"></span></div>
+                <div class="upload-preview" id="uploadPreview" style="display:none; align-items:center; gap:10px; margin-top:12px;"><img id="uploadPreviewImg" style="width:38px; height:38px; border-radius:8px; object-fit:cover;"><span id="uploadPreviewName"></span></div>
               </div>
             </div>
-            <button type="submit" class="btn btn-accent" style="margin-top:14px;">List Product</button>
+            <button type="submit" class="btn btn-accent" style="margin-top:14px;">List Product Drop</button>
           </form>
         </div>
         <div class="card">
           <div class="table-wrap">
             <table>
-              <thead><tr><th>Product</th><th>Description</th><th>Price</th><th>Stock</th><th>Action</th></tr></thead>
+              <thead><tr><th>Product Drop</th><th>Description</th><th>Price</th><th>Stock</th><th>Action</th></tr></thead>
               <tbody id="inventoryBody"></tbody>
             </table>
           </div>
@@ -219,7 +216,7 @@
       <section class="panel" id="panel-orders">
         <div class="table-wrap">
           <table>
-            <thead><tr><th>Order ID</th><th>Customer</th><th>Product</th><th>Drop Address / Location</th><th>Status</th></tr></thead>
+            <thead><tr><th>Order ID</th><th>Customer Info</th><th>Apparel Details</th><th>Drop Destination / Address Link</th><th>Status</th></tr></thead>
             <tbody id="ordersBody"></tbody>
           </table>
         </div>
@@ -259,14 +256,14 @@
         }));
       }
       const ordRes = await fetch(`${BACKEND_API}/orders`);
-      if(ordRes.ok) {
-        orders = await ordRes.json();
-      }
+      if(ordRes.ok) { orders = await ordRes.json(); }
       renderAll();
     } catch (err) { console.error(err); }
   }
 
   window.switchTab = function(tab){
+    document.getElementById('tabL').classList.toggle('active', tab === 'login');
+    document.getElementById('tabS').classList.toggle('active', tab === 'signup');
     document.getElementById('loginFlow').style.display = tab === 'login' ? '' : 'none';
     document.getElementById('signupFlow').style.display = tab === 'signup' ? '' : 'none';
   };
@@ -274,7 +271,7 @@
   window.loginStep1Submit = async function(){
     const mobile = document.getElementById('l_mobile').value.trim();
     const password = document.getElementById('l_password').value;
-    if(!validMobile(mobile) || !password) { toast('Fill details.', 'err'); return; }
+    if(!validMobile(mobile) || !password) { toast('Invalid form entry.', 'err'); return; }
     try {
       const response = await fetch(`${BACKEND_API}/login/verify-credentials`, {
         method: "POST",
@@ -287,12 +284,12 @@
         toast('📱 OTP: ' + loginPendingOtp, 'info');
         document.getElementById('loginStep1').classList.remove('active');
         document.getElementById('loginStep2').classList.add('active');
-      } else { toast('Invalid details.', 'err'); }
-    } catch (err) { toast('Connection error.', 'err'); }
+      } else { toast('Invalid credentials account match.', 'err'); }
+    } catch (err) { toast('Connection error backend validation.', 'err'); }
   };
 
   window.loginVerifyOtp = function(){
-    if(document.getElementById('l_otp').value.trim() !== loginPendingOtp){ toast('Wrong OTP.', 'err'); return; }
+    if(document.getElementById('l_otp').value.trim() !== loginPendingOtp){ toast('Wrong OTP token.', 'err'); return; }
     currentUser = { name: loggedInSellerName, mobile: loginMobile };
     enterDashboard();
   };
@@ -301,7 +298,7 @@
     const name = document.getElementById('s_name').value.trim();
     const mobile = document.getElementById('s_mobile').value.trim();
     const password = document.getElementById('s_password').value;
-    if(!name || !validMobile(mobile) || password.length < 6) { toast('Check metrics.', 'err'); return; }
+    if(!name || !validMobile(mobile) || password.length < 6) { toast('Verify metrics constraints.', 'err'); return; }
     try {
       const res = await fetch(`${BACKEND_API}/signup/register-seller`, {
         method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ name, mobile, password })
@@ -311,12 +308,12 @@
         toast('📱 OTP: ' + signupPendingOtp, 'info');
         document.getElementById('signupStep1').classList.remove('active');
         document.getElementById('signupStep2').classList.add('active');
-      } else { toast('Mobile already used.', 'err'); }
-    } catch(e) { toast('Server Fail.', 'err'); }
+      } else { toast('Account already exists.', 'err'); }
+    } catch(e) { toast('Server communication framework error.', 'err'); }
   };
 
   window.signupVerifyOtp = function(){
-    if(document.getElementById('s_otp').value.trim() !== signupPendingOtp){ toast('Mismatch.', 'err'); return; }
+    if(document.getElementById('s_otp').value.trim() !== signupPendingOtp){ toast('Mismatch confirmation.', 'err'); return; }
     currentUser = { name: staged.name, mobile: staged.mobile };
     document.getElementById('signupStep2').classList.remove('active');
     document.getElementById('signupStep3').classList.add('active');
@@ -329,11 +326,10 @@
     document.getElementById('dashboard').classList.add('active');
     document.getElementById('userIdDisplay').innerHTML = esc(currentUser.name) + '<small>Owner</small>';
     document.getElementById('profileNameDisplay').textContent = currentUser.name;
-    document.getElementById('profileMobileDisplay').textContent = currentUser.mobile;
+    document.getElementById('profileMobileDisplay').textContent = '+91 ' + currentUser.mobile;
     syncWithBackend(); setInterval(syncWithBackend, 4000);
   }
 
-  // 🌟 AJAX FILE ENCODER
   const pImage = document.getElementById('pImage');
   const uploadPreview = document.getElementById('uploadPreview');
   pImage.addEventListener('change', function(){
@@ -342,6 +338,7 @@
     reader.onload = ev => {
       pendingImageSrc = ev.target.result;
       document.getElementById('uploadPreviewImg').src = pendingImageSrc;
+      document.getElementById('uploadPreviewName').textContent = file.name;
       uploadPreview.style.display = 'flex';
     };
     reader.readAsDataURL(file);
@@ -358,22 +355,21 @@
         method: "POST", headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ id: String(Date.now()).slice(-4), name, price, stock, desc, imgSrc: pendingImageSrc })
       });
-      if(res.ok) { toast('🎉 Listed Live!'); this.reset(); uploadPreview.style.display='none'; pendingImageSrc=''; syncWithBackend(); }
-    } catch(err) { toast('API offline.', 'err'); }
+      if(res.ok) { toast('🎉 Drop Listed Live!'); this.reset(); uploadPreview.style.style.display='none'; pendingImageSrc=''; syncWithBackend(); }
+    } catch(err) { toast('API system error.', 'err'); }
   });
 
-  /* 🌟 DELETE PRODUCT HANDLER INTERACTION */
   window.deleteProduct = async function(id) {
-    if(!confirm("Are you sure you want to delete this apparel drop?")) return;
+    if(!confirm("Remove this streetwear drop completely from database?")) return;
     try {
       const res = await fetch(`${BACKEND_API}/products/${id}`, { method: "DELETE" });
-      if(res.ok) { toast('🗑️ Drop deleted completely.'); syncWithBackend(); }
-    } catch(e) { toast('Delete connection error.', 'err'); }
+      if(res.ok) { toast('🗑️ Drop removed successfully.'); syncWithBackend(); }
+    } catch(e) { toast('Delete endpoint error.', 'err'); }
   };
 
   function renderInventory(){
     const body = document.getElementById('inventoryBody');
-    if(!products.length){ body.innerHTML = '<tr><td colspan="5">Empty Catalog</td></tr>'; return; }
+    if(!products.length){ body.innerHTML = '<tr><td colspan="5">Empty Catalog Drop</td></tr>'; return; }
     body.innerHTML = products.map(p => `
       <tr>
         <td><b>${esc(p.name)}</b><br><small>ID: ${p.id}</small></td>
@@ -387,13 +383,13 @@
 
   function renderOrders(){
     const body = document.getElementById('ordersBody');
-    if(!orders.length){ body.innerHTML = '<tr><td colspan="5">No drops ordered.</td></tr>'; return; }
+    if(!orders.length){ body.innerHTML = '<tr><td colspan="5">No active drops orders logged.</td></tr>'; return; }
     body.innerHTML = orders.map(o => `
       <tr>
         <td>#${o.id}</td>
         <td>${esc(o.customer_name)} (${o.customer_mobile})</td>
         <td>ID: ${o.product_id} (Qty: ${o.qty})</td>
-        <td style="color:var(--cyan); max-width:300px; word-break:break-word;">${esc(o.address || 'Dehradun Campus')}</td>
+        <td style="color:var(--cyan); font-weight:600; max-width:300px; word-break:break-word;">${esc(o.address || 'Dehradun Point')}</td>
         <td>${o.status}</td>
       </tr>
     `).join('');
