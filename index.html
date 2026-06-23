@@ -25,139 +25,62 @@
     --radius-sm: 8px;
   }
 
-  *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;}
+  *{box-sizing:border-box; margin:0; padding:0;}
   body{
-    background:
-      radial-gradient(900px 500px at 15% -10%, rgba(168,85,247,0.16), transparent 60%),
-      radial-gradient(800px 600px at 110% 10%, rgba(34,211,238,0.12), transparent 55%),
-      var(--void);
-    color:var(--ice);
-    font-family:'Inter', sans-serif;
-    min-height:100vh;
-    -webkit-font-smoothing:antialiased;
+    background: radial-gradient(900px 500px at 15% -10%, rgba(168,85,247,0.16), transparent 60%), var(--void);
+    color:var(--ice); font-family:'Inter', sans-serif; min-height:100vh;
   }
-  h1,h2,h3,h4,.display{font-family:'Rajdhani', sans-serif; font-weight:700; letter-spacing:0.02em; margin:0;}
-  a{color:inherit;}
-  button{font-family:inherit; cursor:pointer;}
-  input,select,textarea{font-family:inherit;}
-  button:disabled{cursor:not-allowed; opacity:0.55;}
+  h1,h2,h3,.display{font-family:'Rajdhani', sans-serif; font-weight:700;}
+  button{cursor:pointer; font-family:inherit;}
+  input,textarea{font-family:inherit;}
 
-  ::-webkit-scrollbar{width:10px; height:10px;}
-  ::-webkit-scrollbar-track{background:var(--panel);}
-  ::-webkit-scrollbar-thumb{background:linear-gradient(var(--violet), var(--cyan)); border-radius:8px;}
+  .glow-text{background:var(--grad-drip); -webkit-background-clip:text; background-clip:text; color:transparent;}
 
-  a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{
-    outline:2px solid var(--cyan); outline-offset:2px;
-  }
-  @media (prefers-reduced-motion: reduce){
-    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
-  }
-
-  .glow-text{background:var(--grad-drip); -webkit-background-clip:text; background-clip:text; color:transparent; filter:drop-shadow(0 0 14px rgba(168,85,247,0.45));}
-
-  /* ============== AUTH SCREEN ============== */
-  #authScreen{min-height:100vh; display:flex; align-items:center; justify-content:center; padding:32px 20px;}
-  .auth-wrap{width:100%; max-width:440px; display:flex; flex-direction:column; align-items:center; animation:riseIn .7s ease both;}
-  @keyframes riseIn{from{opacity:0; transform:translateY(18px);} to{opacity:1; transform:translateY(0);}}
-
-  .login-logo-badge{
-    width:130px; height:130px; border-radius:50%; overflow:hidden;
-    display:flex; align-items:center; justify-content:center;
-    box-shadow:0 0 0 1px rgba(255,255,255,0.06), 0 0 40px 6px rgba(168,85,247,0.35), 0 0 70px 10px rgba(34,211,238,0.18);
-    margin-bottom:18px; background:var(--panel-2);
-  }
-  .login-logo-badge .badge-fallback{font-family:'Rajdhani', sans-serif; font-weight:700; font-size:34px; background:var(--grad-drip); -webkit-background-clip:text; background-clip:text; color:transparent;}
-  
-  .login-tag{color:var(--mist); font-size:13px; letter-spacing:0.18em; text-transform:uppercase; margin-bottom:28px;}
-
-  .auth-tabs{display:flex; width:100%; margin-bottom:0; border-radius:var(--radius) var(--radius) 0 0; overflow:hidden; border:1px solid var(--line); border-bottom:none;}
-  .auth-tab{flex:1; padding:13px 10px; font-size:14px; font-weight:700; font-family:'Rajdhani',sans-serif; letter-spacing:0.06em; background:var(--panel); border:none; color:var(--mist); cursor:pointer; transition:background .2s, color .2s; text-transform:uppercase;}
+  #authScreen{min-height:100vh; display:flex; align-items:center; justify-content:center; padding:20px;}
+  .auth-wrap{width:100%; max-width:440px; display:flex; flex-direction:column; align-items:center;}
+  .auth-tabs{display:flex; width:100%; border-radius:var(--radius) var(--radius) 0 0; overflow:hidden; border:1px solid var(--line); border-bottom:none;}
+  .auth-tab{flex:1; padding:13px 10px; background:var(--panel); border:none; color:var(--mist); font-weight:700; text-transform:uppercase;}
   .auth-tab.active{background:var(--panel-2); color:var(--ice);}
-  .auth-tab:first-child{border-right:1px solid var(--line);}
-
-  .auth-card{
-    width:100%;
-    background:linear-gradient(160deg, var(--panel-2), var(--panel));
-    border:1px solid var(--line);
-    border-top:none;
-    border-radius:0 0 var(--radius) var(--radius);
-    padding:28px 28px 24px;
-    position:relative;
-    box-shadow:0 30px 60px -20px rgba(0,0,0,0.7);
-  }
-
+  .auth-card{width:100%; background:linear-gradient(160deg, var(--panel-2), var(--panel)); border:1px solid var(--line); border-radius:0 0 var(--radius) var(--radius); padding:28px;}
   .auth-step{display:none;}
   .auth-step.active{display:block;}
 
-  .step-indicator{display:flex; align-items:center; gap:8px; margin-bottom:20px;}
-  .step-dot{width:8px; height:8px; border-radius:50%; background:var(--panel-3); border:1px solid var(--line); transition:background .2s, box-shadow .2s;}
-  .step-dot.active{background:var(--grad-drip); box-shadow:0 0 10px rgba(168,85,247,0.6);}
-  .step-dot.done{background:var(--go); border-color:var(--go); color:#08060d; font-size:7px; font-weight:900; display:flex; align-items:center; justify-content:center;}
-  .step-track{flex:1; height:1px; background:var(--line);}
-
-  .step-title{font-size:20px; margin-bottom:4px;}
-  .step-sub{color:var(--mist); font-size:13px; margin-bottom:20px;}
-
   .field{margin-bottom:16px;}
-  .field label{display:block; font-size:11.5px; letter-spacing:0.08em; text-transform:uppercase; color:var(--mist); margin-bottom:7px; font-weight:600;}
-  .field .input-shell{position:relative; border-radius:var(--radius-sm); background:var(--void); border:1px solid rgba(255,255,255,0.08); transition:border-color .2s, box-shadow .2s;}
-  .field .input-shell:focus-within{border-color:var(--cyan); box-shadow:0 0 0 3px rgba(34,211,238,0.14), 0 0 18px rgba(168,85,247,0.25);}
-  .field input{width:100%; background:transparent; border:none; outline:none; color:var(--ice); font-size:15px; padding:13px 14px;}
-  .field input.otp-input{text-align:center; font-size:22px; letter-spacing:0.4em; font-weight:700; padding:13px 8px;}
-  .field-error{display:none; color:var(--danger); font-size:12px; margin-top:6px;}
-  .field.error .input-shell{border-color:var(--danger);}
-  .field.error .field-error{display:block;}
+  .field label{display:block; font-size:11px; text-transform:uppercase; color:var(--mist); margin-bottom:7px; font-weight:600;}
+  .field .input-shell{border-radius:var(--radius-sm); background:var(--void); border:1px solid rgba(255,255,255,0.08); position:relative;}
+  .field input{width:100%; background:transparent; border:none; outline:none; color:var(--ice); padding:13px 14px; font-size:15px;}
+  .field input.otp-input{text-align:center; font-size:22px; letter-spacing:0.4em;}
+  .phone-prefix{display:flex; align-items:center;}
+  .prefix-label{padding:13px 12px; color:var(--mist); border-right:1px solid rgba(255,255,255,0.08);}
 
-  .phone-prefix{display:flex; align-items:center; gap:0;}
-  .phone-prefix .prefix-label{padding:13px 12px 13px 14px; color:var(--mist); font-size:15px; border-right:1px solid rgba(255,255,255,0.08); white-space:nowrap; flex-shrink:0;}
-  .phone-prefix input{padding-left:10px !important;}
-
-  /* 🌟 PREMIUM DROP BOX STYLING RESTORED */
-  .upload-box{position:relative; border:1.5px dashed rgba(168,85,247,0.4); border-radius:var(--radius-sm); background:rgba(168,85,247,0.04); padding:22px; text-align:center; cursor:pointer; transition:border-color .2s, background .2s;}
-  .upload-box:hover{border-color:var(--cyan); background:rgba(34,211,238,0.05);}
-  .upload-box input[type="file"]{position:absolute; inset:0; opacity:0; cursor:pointer; width:100%; height:100%;}
+  /* PREMIUM ZONE DROP RESTORED */
+  .upload-box{position:relative; border:1.5px dashed rgba(168,85,247,0.4); border-radius:var(--radius-sm); background:rgba(168,85,247,0.04); padding:22px; text-align:center;}
+  .upload-box input[type="file"]{position:absolute; inset:0; opacity:0; cursor:pointer;}
   .upload-box .up-icon{font-size:26px; margin-bottom:8px;}
-  .upload-box .up-text{font-size:13.5px; color:var(--ice); font-weight:600;}
-  .upload-box .up-sub{font-size:11.5px; color:var(--mist); margin-top:3px;}
-  .upload-preview{margin-top:12px; display:none; align-items:center; gap:10px; font-size:12.5px; color:var(--go);}
+  .upload-preview{margin-top:12px; display:none; align-items:center; gap:10px; color:var(--go); font-size:12.5px;}
   .upload-preview img{width:38px; height:38px; border-radius:8px; object-fit:cover;}
 
-  .btn{display:inline-flex; align-items:center; justify-content:center; gap:8px; border:none; border-radius:var(--radius-sm); font-weight:600; font-size:14px; padding:12px 20px; transition:transform .15s, filter .2s;}
-  .btn:active{transform:translateY(1px) scale(0.99);}
-  .btn-primary{width:100%; color:#08060d; background:var(--grad-drip); background-size:160% 100%; box-shadow:0 10px 30px -8px rgba(168,85,247,0.55); padding:14px 20px;}
-  .btn-secondary-line{width:100%; background:transparent; color:var(--mist); border:1px solid var(--line); margin-top:10px; padding:11px 16px;}
-  .btn-secondary-line:hover{color:var(--ice); border-color:var(--cyan);}
-  .btn-accent{color:#08060d; background:var(--grad-drip); font-weight:600; border-radius:var(--radius-sm); border:none; padding:12px 24px; box-shadow:0 8px 22px -6px rgba(168,85,247,0.5);}
+  .btn{display:inline-flex; align-items:center; justify-content:center; border:none; border-radius:var(--radius-sm); font-weight:600; padding:12px 20px;}
+  .btn-primary{width:100%; color:#08060d; background:var(--grad-drip); padding:14px 20px;}
+  .btn-secondary-line{width:100%; background:transparent; color:var(--mist); border:1px solid var(--line); margin-top:10px;}
+  .btn-accent{color:#08060d; background:var(--grad-drip); box-shadow:0 8px 22px -6px rgba(168,85,247,0.5);}
+  .btn-ghost{background:transparent; border:1px solid var(--line); color:var(--mist); padding:9px 16px; border-radius:var(--radius-sm);}
+  
+  /* 🌟 STYLISH TRASH DELETE CONFIGURATION */
+  .btn-delete{background:rgba(255,84,112,0.15); color:var(--danger); border:1px solid rgba(255,84,112,0.3); padding:6px 12px; border-radius:6px; font-size:12px;}
+  .btn-delete:hover{background:var(--danger); color:#000;}
 
-  .pw-strength{height:4px; border-radius:2px; margin-top:8px; background:var(--panel-3); overflow:hidden;}
-  .pw-strength-bar{height:100%; width:0; transition:width .3s, background .3s;}
-
-  /* ============== DASHBOARD ============== */
   #dashboard{display:none; min-height:100vh; flex-direction:column;}
   #dashboard.active{display:flex;}
-
-  .topbar{height:72px; display:flex; align-items:center; justify-content:space-between; padding:0 24px; background:linear-gradient(180deg, var(--panel-2), var(--panel)); border-bottom:1px solid var(--line); position:sticky; top:0; z-index:50;}
+  .topbar{height:72px; display:flex; align-items:center; justify-content:between; padding:0 24px; background:linear-gradient(180deg, var(--panel-2), var(--panel)); border-bottom:1px solid var(--line);}
   .topbar-left{display:flex; align-items:center; gap:14px;}
-  .topbar-logo{width:46px; height:46px; border-radius:50%; box-shadow:0 0 0 1px rgba(255,255,255,0.08), 0 0 18px rgba(168,85,247,0.4); display:flex; align-items:center; justify-content:center; background:var(--panel-3);}
-  .topbar-brand{display:flex; flex-direction:column; line-height:1.05;}
-  .topbar-brand .name{font-size:19px; font-weight:700; letter-spacing:0.03em;}
-  .topbar-brand .role{font-size:11px; color:var(--mist); letter-spacing:0.12em; text-transform:uppercase;}
-
-  .topbar-right{display:flex; align-items:center; gap:16px;}
   .user-chip{display:flex; align-items:center; gap:10px; background:var(--panel-3); border:1px solid var(--line); border-radius:30px; padding:6px 14px 6px 6px;}
-  .user-avatar{width:30px; height:30px; border-radius:50%; background:var(--grad-drip); display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; color:#08060d;}
-  .user-chip .uid{font-size:13px; font-weight:600;}
-  .user-chip .uid small{display:block; font-size:10px; color:var(--mist);}
-
-  .btn-ghost{background:transparent; border:1px solid var(--line); color:var(--mist); font-size:13px; padding:9px 16px; border-radius:var(--radius-sm);}
-  .btn-ghost:hover{color:var(--ice); border-color:var(--cyan);}
+  .user-avatar{width:30px; height:30px; border-radius:50%; background:var(--grad-drip); display:flex; align-items:center; justify-content:center; color:#08060d; font-weight:700;}
 
   .layout{flex:1; display:grid; grid-template-columns:230px 1fr;}
   .sidenav{background:var(--panel); border-right:1px solid var(--line); padding:20px 14px; display:flex; flex-direction:column; gap:6px;}
-  .nav-item{display:flex; align-items:center; gap:11px; padding:11px 13px; border-radius:10px; color:var(--mist); font-size:14px; font-weight:600; border:1px solid transparent; background:transparent; text-align:left; width:100%; cursor:pointer;}
-  .nav-item:hover, .nav-item.active{color:var(--ice); background:var(--panel-2);}
-  .nav-item.active{border-color:var(--line);}
+  .nav-item{display:flex; align-items:center; gap:11px; padding:11px 13px; border-radius:10px; color:var(--mist); font-size:14px; border:1px solid transparent; background:transparent; text-align:left; width:100%;}
+  .nav-item.active{color:var(--ice); background:var(--panel-2); border-color:var(--line);}
 
   .content{padding:28px 32px 60px; overflow-y:auto;}
   .panel{display:none;}
@@ -166,11 +89,10 @@
   .card{background:linear-gradient(160deg, var(--panel-2), var(--panel)); border:1px solid var(--line); border-radius:var(--radius); padding:24px; margin-bottom:26px;}
   .form-grid{display:grid; grid-template-columns:repeat(2, 1fr); gap:18px 20px;}
   .form-grid .full{grid-column:1 / -1;}
-  .form-grid textarea{width:100%; background:var(--void); border:1px solid rgba(255,255,255,0.08); border-radius:var(--radius-sm); color:var(--ice); padding:12px 14px; min-height:80px; resize:vertical;}
-  .form-grid textarea:focus{outline:none; border-color:var(--cyan);}
+  .form-grid textarea{width:100%; background:var(--void); border:1px solid rgba(255,255,255,0.08); border-radius:var(--radius-sm); color:var(--ice); padding:12px 14px; min-height:80px;}
 
   .table-wrap{overflow-x:auto; border-radius:var(--radius-sm); border:1px solid var(--line);}
-  table{width:100%; border-collapse:collapse; min-width:720px;}
+  table{width:100%; border-collapse:collapse; min-width:800px;}
   thead th{text-align:left; font-size:11px; color:var(--mist); padding:13px 16px; background:var(--panel-3); border-bottom:1px solid var(--line); text-transform:uppercase;}
   tbody td{padding:13px 16px; font-size:13.5px; border-bottom:1px solid rgba(255,255,255,0.05);}
 
@@ -180,103 +102,51 @@
   .stat-card .stat-val{font-size:26px; font-weight:700; font-family:'Rajdhani',sans-serif;}
   .stat-card .stat-val.grad{background:var(--grad-drip); -webkit-background-clip:text; background-clip:text; color:transparent;}
 
-  .toast-wrap{position:fixed; bottom:24px; right:24px; display:flex; flex-direction:column; gap:10px; z-index:999;}
+  .toast-wrap{position:fixed; bottom:24px; right:24px; z-index:999;}
   .toast{background:var(--panel-2); border:1px solid var(--line); border-left:3px solid var(--go); border-radius:10px; padding:13px 18px; font-size:13px; color:var(--ice);}
   .toast.err{border-left-color:var(--danger);}
-  .toast.info{border-left-color:var(--violet);}
-
-  @media (max-width: 900px){
-    .layout{grid-template-columns:1fr;}
-    .sidenav{display:none;}
-    .stat-row{grid-template-columns:repeat(2, 1fr);}
-  }
 </style>
 </head>
 <body>
 
 <div id="authScreen">
   <div class="auth-wrap">
-    <div class="login-logo-badge" id="loginLogoBadge"><span class="badge-fallback">TT</span></div>
+    <div class="login-logo-badge"><span class="badge-fallback">TT</span></div>
     <div class="login-tag">Seller Control Panel</div>
-
     <div class="auth-tabs">
-      <button class="auth-tab active" id="tabLogin" onclick="switchTab('login')">Sign in</button>
-      <button class="auth-tab" id="tabSignup" onclick="switchTab('signup')">Create account</button>
+      <button class="auth-tab active" onclick="switchTab('login')">Sign in</button>
+      <button class="auth-tab" onclick="switchTab('signup')">Create account</button>
     </div>
-
     <div class="auth-card">
       <div id="loginFlow">
         <div class="auth-step active" id="loginStep1">
-          <div class="step-indicator">
-            <div class="step-dot active" id="lDot1"></div>
-            <div class="step-track"></div>
-            <div class="step-dot" id="lDot2"></div>
-          </div>
-          <h2 class="step-title">Welcome back</h2>
-          <div class="field" id="l_fieldMobile">
-            <label for="l_mobile">Mobile number</label>
-            <div class="input-shell phone-prefix">
-              <span class="prefix-label">+91</span>
-              <input type="tel" id="l_mobile" placeholder="10-digit number" maxlength="10">
-            </div>
-            <div class="field-error">Enter valid number.</div>
-          </div>
-          <div class="field" id="l_fieldPassword">
-            <label for="l_password">Password</label>
-            <div class="input-shell"><input type="password" id="l_password" placeholder="••••••••"></div>
-            <div class="field-error">Incorrect credentials.</div>
-          </div>
+          <h2 style="margin-bottom:14px;">Welcome back</h2>
+          <div class="field"><label>Mobile number</label><div class="input-shell phone-prefix"><span class="prefix-label">+91</span><input type="tel" id="l_mobile" maxlength="10"></div></div>
+          <div class="field"><label>Password</label><div class="input-shell"><input type="password" id="l_password" placeholder="••••••••"></div></div>
           <button class="btn btn-primary" onclick="loginStep1Submit()">Send OTP</button>
         </div>
-
         <div class="auth-step" id="loginStep2">
-          <div class="step-indicator">
-            <div class="step-dot done">✓</div>
-            <div class="step-track"></div>
-            <div class="step-dot active"></div>
-          </div>
-          <h2 class="step-title">Verify OTP</h2>
-          <p class="step-sub">Sent to <span id="loginOtpDisplay"></span>.</p>
-          <div class="field">
-            <div class="input-shell"><input type="text" id="l_otp" class="otp-input" placeholder="······" maxlength="6"></div>
-          </div>
+          <h2>Verify OTP</h2>
+          <div class="field" style="margin-top:14px;"><div class="input-shell"><input type="text" id="l_otp" class="otp-input" placeholder="······" maxlength="6"></div></div>
           <button class="btn btn-primary" onclick="loginVerifyOtp()">Verify &amp; sign in</button>
-          <button class="btn btn-secondary-line" onclick="loginBackToStep1()">← Back</button>
         </div>
       </div>
-
       <div id="signupFlow" style="display:none;">
         <div class="auth-step active" id="signupStep1">
-          <h2 class="step-title">Create account</h2>
-          <div class="field" id="s_fieldName">
-            <label>Store / Full Name</label>
-            <div class="input-shell"><input type="text" id="s_name" placeholder="Name"></div>
-          </div>
-          <div class="field" id="s_fieldMobile">
-            <label>Mobile</label>
-            <div class="input-shell phone-prefix"><span class="prefix-label">+91</span><input type="tel" id="s_mobile" maxlength="10"></div>
-          </div>
-          <div class="field" id="s_fieldPassword">
-            <label>Password</label>
-            <div class="input-shell"><input type="password" id="s_password" oninput="checkPwStrength(this.value)"></div>
-            <div class="pw-strength"><div class="pw-strength-bar" id="pwBar"></div></div>
-          </div>
-          <div class="field" id="s_fieldConfirm">
-            <label>Confirm</label>
-            <div class="input-shell"><input type="password" id="s_confirm"></div>
-          </div>
+          <h2>Create Store</h2>
+          <div class="field"><label>Store Name</label><div class="input-shell"><input type="text" id="s_name"></div></div>
+          <div class="field"><label>Mobile</label><div class="input-shell phone-prefix"><span class="prefix-label">+91</span><input type="tel" id="s_mobile" maxlength="10"></div></div>
+          <div class="field"><label>Password</label><div class="input-shell"><input type="password" id="s_password"></div></div>
+          <div class="field"><label>Confirm</label><div class="input-shell"><input type="password" id="s_confirm"></div></div>
           <button class="btn btn-primary" onclick="signupStep1Submit()">Register Store</button>
         </div>
-
         <div class="auth-step" id="signupStep2">
-          <h2 class="step-title">Verify Registration</h2>
+          <h2>Verify Setup</h2>
           <div class="field"><div class="input-shell"><input type="text" id="s_otp" class="otp-input" maxlength="6"></div></div>
           <button class="btn btn-primary" onclick="signupVerifyOtp()">Complete Registration</button>
         </div>
-
         <div class="auth-step" id="signupStep3">
-          <h2 class="step-title">Done!</h2>
-          <p class="step-sub">Account created for <span id="signupDoneDisplay"></span>.</p>
+          <h2>Done!</h2>
           <button class="btn btn-primary" onclick="goToDashboard()">Enter Dashboard →</button>
         </div>
       </div>
@@ -286,25 +156,19 @@
 
 <div id="dashboard">
   <header class="topbar">
-    <div class="topbar-left">
-      <div class="topbar-logo"><span class="badge-fallback-sm">TT</span></div>
-      <div class="topbar-brand"><span class="name">TRENDTEES <span class="glow-text">STUDIO</span></span><span class="role">Seller Control Panel</span></div>
-    </div>
+    <div class="topbar-left"><div class="topbar-brand"><span class="name">TRENDTEES <span class="glow-text">STUDIO</span></span></div></div>
     <div class="topbar-right">
-      <div class="user-chip">
-        <div class="user-avatar" id="userAvatar">T</div>
-        <div class="uid" id="userIdDisplay">—<small>Logged in</small></div>
-      </div>
+      <div class="user-chip"><div class="user-avatar">T</div><div class="uid" id="userIdDisplay">—<small>Logged in</small></div></div>
       <button class="btn btn-ghost" onclick="location.reload()">Log out</button>
     </div>
   </header>
 
   <div class="layout">
     <nav class="sidenav">
-      <button class="nav-item active" data-panel="panel-overview"><span class="ic">◆</span><span class="label">Overview</span></button>
-      <button class="nav-item" data-panel="panel-account"><span class="ic">●</span><span class="label">My account</span></button>
-      <button class="nav-item" data-panel="panel-inventory"><span class="ic">▣</span><span class="label">Inventory</span></button>
-      <button class="nav-item" data-panel="panel-orders"><span class="ic">▤</span><span class="label">Orders</span></button>
+      <button class="nav-item active" data-panel="panel-overview">Overview</button>
+      <button class="nav-item" data-panel="panel-account">My account</button>
+      <button class="nav-item" data-panel="panel-inventory">Inventory</button>
+      <button class="nav-item" data-panel="panel-orders">Orders</button>
     </nav>
 
     <main class="content">
@@ -318,11 +182,7 @@
       </section>
 
       <section class="panel" id="panel-account">
-        <div class="card">
-          <div class="profile-row">
-            <div class="profile-meta"><span class="pname" id="profileNameDisplay">—</span><span class="pmobile" id="profileMobileDisplay">—</span></div>
-          </div>
-        </div>
+        <div class="card"><div id="profileNameDisplay">—</div><div id="profileMobileDisplay">—</div></div>
       </section>
 
       <section class="panel" id="panel-inventory">
@@ -333,28 +193,23 @@
               <div class="field"><label>Price</label><div class="input-shell"><input type="number" id="pPrice"></div></div>
               <div class="field full"><label>Description</label><textarea id="pDesc"></textarea></div>
               <div class="field"><label>Stock</label><div class="input-shell"><input type="number" id="pStock"></div></div>
-              
               <div class="field">
                 <label>Upload Image</label>
-                <div class="upload-box" id="uploadBox">
+                <div class="upload-box">
                   <input type="file" id="pImage" accept="image/*">
                   <div class="up-icon">⇪</div>
                   <div class="up-text">Click or drop an image</div>
-                  <div class="up-sub">PNG or JPG framework layout style</div>
                 </div>
-                <div class="upload-preview" id="uploadPreview">
-                  <img id="uploadPreviewImg" src="" alt="">
-                  <span id="uploadPreviewName"></span>
-                </div>
+                <div class="upload-preview" id="uploadPreview"><img id="uploadPreviewImg"><span id="uploadPreviewName"></span></div>
               </div>
             </div>
-            <button type="submit" class="btn btn-accent" style="margin-top: 18px;">List Product</button>
+            <button type="submit" class="btn btn-accent" style="margin-top:14px;">List Product</button>
           </form>
         </div>
         <div class="card">
           <div class="table-wrap">
             <table>
-              <thead><tr><th>Product</th><th>Description</th><th>Price</th><th>Stock</th><th>Status</th></tr></thead>
+              <thead><tr><th>Product</th><th>Description</th><th>Price</th><th>Stock</th><th>Action</th></tr></thead>
               <tbody id="inventoryBody"></tbody>
             </table>
           </div>
@@ -364,7 +219,7 @@
       <section class="panel" id="panel-orders">
         <div class="table-wrap">
           <table>
-            <thead><tr><th>Order ID</th><th>Customer</th><th>Product</th><th>Qty</th><th>Status</th></tr></thead>
+            <thead><tr><th>Order ID</th><th>Customer</th><th>Product</th><th>Drop Address / Location</th><th>Status</th></tr></thead>
             <tbody id="ordersBody"></tbody>
           </table>
         </div>
@@ -378,28 +233,17 @@
 <script>
 (function(){
   "use strict";
-
   const BACKEND_API = "https://trendtees-backend-api.onrender.com/api";
 
-  let products = [];
-  let orders = [];
-  let pendingImageSrc = '';
-  let currentUser = null;
-  let loggedInSellerName = ""; 
-
-  let loginPendingOtp = '';
-  let loginTimerHandle = null;
-  let loginMobile = '';
-  let signupPendingOtp = '';
-  let staged = {};
+  let products = []; let orders = []; let pendingImageSrc = '';
+  let currentUser = null; let loggedInSellerName = "";
+  let loginPendingOtp = ''; let signupPendingOtp = ''; let staged = {};
 
   function toast(msg, type){
-    const wrap = document.getElementById('toastWrap');
-    const el = document.createElement('div');
-    el.className = 'toast' + (type ? ' ' + type : '');
-    el.textContent = msg;
-    wrap.appendChild(el);
-    setTimeout(() => { el.remove(); }, 4000);
+    const wrap = document.getElementById('toastWrap'); wrap.innerHTML = "";
+    const el = document.createElement('div'); el.className = 'toast' + (type ? ' ' + type : '');
+    el.textContent = msg; wrap.appendChild(el);
+    setTimeout(() => el.remove(), 4000);
   }
 
   function esc(str){ const d = document.createElement('div'); d.textContent = str; return d.innerHTML; }
@@ -411,19 +255,15 @@
       const prodRes = await fetch(`${BACKEND_API}/products`);
       if(prodRes.ok) {
         products = (await prodRes.json()).map(p => ({
-          id: String(p.id), name: p.name, desc: p.description || '', price: parseFloat(p.price),
-          stock: parseInt(p.stock !== undefined ? p.stock : p.total_stock), imgSrc: p.img_src || ''
+          id: String(p.id), name: p.name, desc: p.description || '', price: parseFloat(p.price), stock: parseInt(p.stock)
         }));
       }
       const ordRes = await fetch(`${BACKEND_API}/orders`);
       if(ordRes.ok) {
-        orders = (await ordRes.json()).map(o => ({
-          id: String(o.id), customer: o.customer_name + " (" + o.customer_mobile + ")",
-          productId: String(o.product_id), qty: parseInt(o.qty), status: o.status
-        }));
+        orders = await ordRes.json();
       }
       renderAll();
-    } catch (err) { console.error("Sync error", err); }
+    } catch (err) { console.error(err); }
   }
 
   window.switchTab = function(tab){
@@ -431,22 +271,10 @@
     document.getElementById('signupFlow').style.display = tab === 'signup' ? '' : 'none';
   };
 
-  window.checkPwStrength = function(pw){
-    const bar = document.getElementById('pwBar'); let score = 0;
-    if(pw.length >= 6) score++; if(/[A-Z]/.test(pw)) score++; if(/[0-9]/.test(pw)) score++;
-    const pct = (score / 3) * 100; const colors = ['#ff5470','#ffb340','#34e0a1'];
-    bar.style.width = pct + '%'; bar.style.background = colors[score - 1] || 'transparent';
-  };
-
-  /* ============================================================
-     AUTH CONTROLS
-     ============================================================ */
   window.loginStep1Submit = async function(){
     const mobile = document.getElementById('l_mobile').value.trim();
     const password = document.getElementById('l_password').value;
-    
-    if(!validMobile(mobile) || !password) { toast('Fill completely.', 'err'); return; }
-    
+    if(!validMobile(mobile) || !password) { toast('Fill details.', 'err'); return; }
     try {
       const response = await fetch(`${BACKEND_API}/login/verify-credentials`, {
         method: "POST",
@@ -454,19 +282,12 @@
         body: JSON.stringify({ mobile, password })
       });
       const data = await response.json();
-      
       if (response.ok) {
-        loggedInSellerName = data.seller_name || "Seller"; 
-        loginMobile = mobile; 
-        loginPendingOtp = data.otp || generateOtp();
-        
-        document.getElementById('loginOtpDisplay').textContent = mobile;
+        loggedInSellerName = data.seller_name; loginMobile = mobile; loginPendingOtp = data.otp || generateOtp();
         toast('📱 OTP: ' + loginPendingOtp, 'info');
         document.getElementById('loginStep1').classList.remove('active');
         document.getElementById('loginStep2').classList.add('active');
-      } else {
-        toast(data.error || 'Invalid account details.', 'err');
-      }
+      } else { toast('Invalid details.', 'err'); }
     } catch (err) { toast('Connection error.', 'err'); }
   };
 
@@ -480,64 +301,51 @@
     const name = document.getElementById('s_name').value.trim();
     const mobile = document.getElementById('s_mobile').value.trim();
     const password = document.getElementById('s_password').value;
-    if(!name || !validMobile(mobile) || password.length < 6) { toast('Check fields.', 'err'); return; }
-
+    if(!name || !validMobile(mobile) || password.length < 6) { toast('Check metrics.', 'err'); return; }
     try {
       const res = await fetch(`${BACKEND_API}/signup/register-seller`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, mobile, password })
+        method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ name, mobile, password })
       });
       if(res.ok) {
-        staged = { name, mobile };
-        signupPendingOtp = (await res.json()).otp || generateOtp();
+        staged = { name, mobile }; signupPendingOtp = generateOtp();
         toast('📱 OTP: ' + signupPendingOtp, 'info');
         document.getElementById('signupStep1').classList.remove('active');
         document.getElementById('signupStep2').classList.add('active');
-      } else { toast('Failed database entry.', 'err'); }
-    } catch(e) { toast('Error connection framework.', 'err'); }
+      } else { toast('Mobile already used.', 'err'); }
+    } catch(e) { toast('Server Fail.', 'err'); }
   };
 
   window.signupVerifyOtp = function(){
     if(document.getElementById('s_otp').value.trim() !== signupPendingOtp){ toast('Mismatch.', 'err'); return; }
     currentUser = { name: staged.name, mobile: staged.mobile };
-    document.getElementById('signupDoneDisplay').textContent = staged.name;
     document.getElementById('signupStep2').classList.remove('active');
     document.getElementById('signupStep3').classList.add('active');
   };
 
   window.goToDashboard = function(){ enterDashboard(); };
-  window.loginBackToStep1 = function(){ document.getElementById('loginStep2').classList.remove('active'); document.getElementById('loginStep1').classList.add('active'); };
 
   function enterDashboard(){
     document.getElementById('authScreen').style.display = 'none';
     document.getElementById('dashboard').classList.add('active');
-    document.getElementById('userIdDisplay').innerHTML = esc(currentUser.name) + '<small>Logged in</small>';
+    document.getElementById('userIdDisplay').innerHTML = esc(currentUser.name) + '<small>Owner</small>';
     document.getElementById('profileNameDisplay').textContent = currentUser.name;
     document.getElementById('profileMobileDisplay').textContent = currentUser.mobile;
-    syncWithBackend();
-    setInterval(syncWithBackend, 4000);
+    syncWithBackend(); setInterval(syncWithBackend, 4000);
   }
 
-  /* ============================================================
-     🌟 DYNAMIC DRAG BOX EVENT INTERACTION
-     ============================================================ */
+  // 🌟 AJAX FILE ENCODER
   const pImage = document.getElementById('pImage');
   const uploadPreview = document.getElementById('uploadPreview');
-
-  if(pImage) {
-    pImage.addEventListener('change', function(){
-      const file = this.files[0]; if(!file) return;
-      const reader = new FileReader();
-      reader.onload = ev => {
-        pendingImageSrc = ev.target.result;
-        document.getElementById('uploadPreviewImg').src = pendingImageSrc;
-        document.getElementById('uploadPreviewName').textContent = file.name;
-        uploadPreview.style.display = 'flex';
-      };
-      reader.readAsDataURL(file);
-    });
-  }
+  pImage.addEventListener('change', function(){
+    const file = this.files[0]; if(!file) return;
+    const reader = new FileReader();
+    reader.onload = ev => {
+      pendingImageSrc = ev.target.result;
+      document.getElementById('uploadPreviewImg').src = pendingImageSrc;
+      uploadPreview.style.display = 'flex';
+    };
+    reader.readAsDataURL(file);
+  });
 
   document.getElementById('productForm').addEventListener('submit', async function(e){
     e.preventDefault();
@@ -545,35 +353,50 @@
     const price = parseFloat(document.getElementById('pPrice').value);
     const stock = parseInt(document.getElementById('pStock').value);
     const desc = document.getElementById('pDesc').value.trim();
-
-    if(!name || isNaN(price) || isNaN(stock)) { toast('Empty fields.', 'err'); return; }
-
     try {
       const res = await fetch(`${BACKEND_API}/products`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+        method: "POST", headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ id: String(Date.now()).slice(-4), name, price, stock, desc, imgSrc: pendingImageSrc })
       });
-      if(res.ok) { 
-        toast('🎉 Listed live successfully!'); 
-        this.reset(); 
-        if(uploadPreview) uploadPreview.style.display = 'none'; 
-        pendingImageSrc = '';
-        syncWithBackend(); 
-      }
+      if(res.ok) { toast('🎉 Listed Live!'); this.reset(); uploadPreview.style.display='none'; pendingImageSrc=''; syncWithBackend(); }
     } catch(err) { toast('API offline.', 'err'); }
   });
 
+  /* 🌟 DELETE PRODUCT HANDLER INTERACTION */
+  window.deleteProduct = async function(id) {
+    if(!confirm("Are you sure you want to delete this apparel drop?")) return;
+    try {
+      const res = await fetch(`${BACKEND_API}/products/${id}`, { method: "DELETE" });
+      if(res.ok) { toast('🗑️ Drop deleted completely.'); syncWithBackend(); }
+    } catch(e) { toast('Delete connection error.', 'err'); }
+  };
+
   function renderInventory(){
     const body = document.getElementById('inventoryBody');
-    if(!products.length){ body.innerHTML = '<tr><td colspan="5">Empty</td></tr>'; return; }
-    body.innerHTML = products.map(p => `<tr><td><b>${esc(p.name)}</b><br><small>ID: ${p.id}</small></td><td>${esc(p.desc)}</td><td>₹${p.price}</td><td>${p.stock}</td><td>Active</td></tr>`).join('');
+    if(!products.length){ body.innerHTML = '<tr><td colspan="5">Empty Catalog</td></tr>'; return; }
+    body.innerHTML = products.map(p => `
+      <tr>
+        <td><b>${esc(p.name)}</b><br><small>ID: ${p.id}</small></td>
+        <td>${esc(p.desc)}</td>
+        <td>₹${p.price}</td>
+        <td>${p.stock}</td>
+        <td><button class="btn-delete" onclick="deleteProduct('${p.id}')">Delete</button></td>
+      </tr>
+    `).join('');
   }
 
   function renderOrders(){
     const body = document.getElementById('ordersBody');
-    if(!orders.length){ body.innerHTML = '<tr><td colspan="5">No orders logged.</td></tr>'; return; }
-    body.innerHTML = orders.map(o => `<tr><td>#${o.id}</td><td>${esc(o.customer)}</td><td>ID: ${o.productId}</td><td>${o.qty}</td><td>${o.status}</td></tr>`).join('');
+    if(!orders.length){ body.innerHTML = '<tr><td colspan="5">No drops ordered.</td></tr>'; return; }
+    body.innerHTML = orders.map(o => `
+      <tr>
+        <td>#${o.id}</td>
+        <td>${esc(o.customer_name)} (${o.customer_mobile})</td>
+        <td>ID: ${o.product_id} (Qty: ${o.qty})</td>
+        <td style="color:var(--cyan); max-width:300px; word-break:break-word;">${esc(o.address || 'Dehradun Campus')}</td>
+        <td>${o.status}</td>
+      </tr>
+    `).join('');
   }
 
   function renderOverview(){
