@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TRENDTEES Studio — Seller Control Panel</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght=500;600;700&family=Inter:wght=400;500;600;700&display=swap');
 
   :root{
     --void:#06060a;
@@ -281,10 +281,10 @@
   .empty-row td{text-align:center; color:#54546b; padding:34px 16px; font-size:13px;}
 
   .stat-row{display:grid; grid-template-columns:repeat(4, 1fr); gap:16px; margin-bottom:26px;}
-  .stat-card{background:var(--panel-2); border:1px solid var(--line); border-radius:var(--radius-sm); padding:18px 18px 16px;}
-  .stat-card .stat-label{font-size:11.5px; color:var(--mist); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:8px;}
-  .stat-card .stat-val{font-size:26px; font-weight:700; font-family:'Rajdhani',sans-serif;}
-  .stat-card .stat-val.grad{background:var(--grad-drip); -webkit-background-clip:text; background-clip:text; color:transparent;}
+  .stat-row .stat-card{background:var(--panel-2); border:1px solid var(--line); border-radius:var(--radius-sm); padding:18px 18px 16px;}
+  .stat-row .stat-card .stat-label{font-size:11.5px; color:var(--mist); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:8px;}
+  .stat-row .stat-card .stat-val{font-size:26px; font-weight:700; font-family:'Rajdhani',sans-serif;}
+  .stat-row .stat-card .stat-val.grad{background:var(--grad-drip); -webkit-background-clip:text; background-clip:text; color:transparent;}
 
   .toast-wrap{position:fixed; bottom:24px; right:24px; display:flex; flex-direction:column; gap:10px; z-index:999;}
   .toast{background:var(--panel-2); border:1px solid var(--line); border-left:3px solid var(--go); border-radius:10px; padding:13px 18px; font-size:13px; box-shadow:0 14px 30px -10px rgba(0,0,0,0.6); animation:toastIn .25s ease both; max-width:320px;}
@@ -319,7 +319,6 @@
 </head>
 <body>
 
-<!-- ============== AUTH SCREEN ============== -->
 <div id="authScreen">
   <div class="auth-wrap">
     <div class="login-logo-badge" id="loginLogoBadge">
@@ -327,7 +326,6 @@
     </div>
     <div class="login-tag">Seller Control Panel</div>
 
-    <!-- TAB SWITCHER -->
     <div class="auth-tabs">
       <button class="auth-tab active" id="tabLogin" onclick="switchTab('login')">Sign in</button>
       <button class="auth-tab" id="tabSignup" onclick="switchTab('signup')">Create account</button>
@@ -335,10 +333,8 @@
 
     <div class="auth-card">
 
-      <!-- ===== LOGIN FLOW ===== -->
       <div id="loginFlow">
 
-        <!-- LOGIN STEP 1: mobile + password -->
         <div class="auth-step active" id="loginStep1">
           <div class="step-indicator">
             <div class="step-dot active" id="lDot1"></div>
@@ -346,8 +342,6 @@
             <div class="step-dot" id="lDot2"></div>
           </div>
           <h2 class="step-title">Welcome back</h2>
-          <p class="step-sub">Enter your registered mobile number and password.</p>
-
           <div class="field" id="l_fieldMobile">
             <label for="l_mobile">Mobile number</label>
             <div class="input-shell phone-prefix">
@@ -370,7 +364,6 @@
           <div class="login-foot">TRENDTEES STUDIO · Local seller access only</div>
         </div>
 
-        <!-- LOGIN STEP 2: OTP -->
         <div class="auth-step" id="loginStep2">
           <div class="step-indicator">
             <div class="step-dot done" id="lDot1b">✓</div>
@@ -400,10 +393,8 @@
 
       </div>
 
-      <!-- ===== SIGNUP FLOW ===== -->
       <div id="signupFlow" style="display:none;">
 
-        <!-- SIGNUP STEP 1: name + mobile + password -->
         <div class="auth-step active" id="signupStep1">
           <div class="step-indicator">
             <div class="step-dot active" id="sDot1"></div>
@@ -453,7 +444,6 @@
           <div class="auth-status" id="signupStatus1"></div>
         </div>
 
-        <!-- SIGNUP STEP 2: OTP verify -->
         <div class="auth-step" id="signupStep2">
           <div class="step-indicator">
             <div class="step-dot done" id="sDot1b">✓</div>
@@ -483,7 +473,6 @@
           <div class="info-box">The OTP is shown in a notification (simulated SMS — no real gateway in this demo).</div>
         </div>
 
-        <!-- SIGNUP STEP 3: success / complete -->
         <div class="auth-step" id="signupStep3">
           <div class="step-indicator">
             <div class="step-dot done" id="sDot1c">✓</div>
@@ -510,7 +499,6 @@
   </div>
 </div>
 
-<!-- ============== DASHBOARD ============== -->
 <div id="dashboard">
   <header class="topbar">
     <div class="topbar-left">
@@ -543,7 +531,6 @@
 
     <main class="content">
 
-      <!-- OVERVIEW -->
       <section class="panel active" id="panel-overview">
         <div class="panel-head">
           <h1>Overview</h1>
@@ -561,7 +548,6 @@
         </div>
       </section>
 
-      <!-- ACCOUNT -->
       <section class="panel" id="panel-account">
         <div class="panel-head">
           <h1>My account</h1>
@@ -584,7 +570,6 @@
         </div>
       </section>
 
-      <!-- INVENTORY -->
       <section class="panel" id="panel-inventory">
         <div class="panel-head">
           <h1>Inventory management</h1>
@@ -647,7 +632,6 @@
         </div>
       </section>
 
-      <!-- ORDERS -->
       <section class="panel" id="panel-orders">
         <div class="panel-head">
           <h1>Order fulfilment</h1>
@@ -680,13 +664,13 @@
   "use strict";
 
   // ─────────────────────────────────────────────
-  // BACKEND RE-ROUTING INTEGRATION (Port 5001)
+  // BACKEND RE-ROUTING INTEGRATION
   // ─────────────────────────────────────────────
   const BACKEND_API = "https://trendtees-backend-api.onrender.com/api";
 
   let products = [];
   let orders = [];
-  let adminPhotoSrc = '';
+  let pendingImageSrc = '';
   let currentUser = null;
 
   let loginPendingOtp = '';
@@ -723,10 +707,6 @@
   function validMobile(v){ return /^[6-9]\d{9}$/.test(v.trim()); }
   function generateOtp(){ return String(Math.floor(100000 + Math.random() * 900000)); }
   function setFieldError(id, has){ document.getElementById(id).classList.toggle('error', has); }
-  function setStatus(id, msg, ok){
-    const el = document.getElementById(id); el.textContent = msg;
-    el.className = 'auth-status' + (ok ? ' ok' : '');
-  }
   function maskMobile(m){ return '+91 ' + m.slice(0,2) + '••••' + m.slice(-4); }
 
   function startTimer(timerEl, resendBtnEl, timerHandle, onExpire){
@@ -740,32 +720,33 @@
     onExpire(h);
   }
 
-  // Real-time Sync Engine with app.py database
   async function syncWithBackend() {
     try {
-      // 1. Fetch live clothes data
       const prodRes = await fetch(`${BACKEND_API}/products`);
-      const rawProducts = await prodRes.json();
-      products = rawProducts.map(p => ({
-        id: String(p.id),
-        name: p.name,
-        desc: p.description || '',
-        price: parseFloat(p.price),
-        stock: parseInt(p.stock !== undefined ? p.stock : p.total_stock),
-        orders_count: p.orders_placed || 0,
-        imgSrc: p.img_src || p.img_url || ''
-      }));
+      if(prodRes.ok) {
+        const rawProducts = await prodRes.json();
+        products = rawProducts.map(p => ({
+          id: String(p.id),
+          name: p.name,
+          desc: p.description || '',
+          price: parseFloat(p.price),
+          stock: parseInt(p.stock !== undefined ? p.stock : p.total_stock),
+          orders_count: p.orders_placed || 0,
+          imgSrc: p.img_src || p.img_url || ''
+        }));
+      }
 
-      // 2. Fetch live orders data
       const ordRes = await fetch(`${BACKEND_API}/orders`);
-      const rawOrders = await ordRes.json();
-      orders = rawOrders.map(o => ({
-        id: String(o.id),
-        customer: o.customer_name + " (" + o.customer_mobile + ")",
-        productId: String(o.product_id),
-        qty: parseInt(o.qty),
-        status: o.status
-      }));
+      if(ordRes.ok) {
+        const rawOrders = await ordRes.json();
+        orders = rawOrders.map(o => ({
+          id: String(o.id),
+          customer: o.customer_name + " (" + o.customer_mobile + ")",
+          productId: String(o.product_id),
+          qty: parseInt(o.qty),
+          status: o.status
+        }));
+      }
 
       renderAll();
     } catch (err) {
@@ -781,6 +762,8 @@
     document.getElementById('tabSignup').classList.toggle('active', tab === 'signup');
     document.getElementById('loginFlow').style.display = tab === 'login' ? '' : 'none';
     document.getElementById('signupFlow').style.display = tab === 'signup' ? '' : 'none';
+    setFieldError('l_fieldPassword', false);
+    setFieldError('l_fieldMobile', false);
   };
 
   ['l_mobile','s_mobile'].forEach(id => {
@@ -800,41 +783,109 @@
   };
 
   /* ============================================================
-     LOGIN & SIGNUP OVERRIDES (Simulated OTP with secure local setup)
+     SECURE LOGIN FLOW WITH BACKEND AUTH VALIDATION
      ============================================================ */
-  window.loginStep1Submit = function(){
+  window.loginStep1Submit = async function(){
     const mobile = document.getElementById('l_mobile').value.trim();
     const password = document.getElementById('l_password').value;
-    if(!validMobile(mobile) || !password) { toast('Please fill details completely.', 'err'); return; }
     
-    loginMobile = mobile; loginPendingOtp = generateOtp();
-    document.getElementById('loginOtpDisplay').textContent = maskMobile(mobile);
-    toast('📱 Seller Login OTP: ' + loginPendingOtp, 'info');
-    document.getElementById('loginStep1').classList.remove('active');
-    document.getElementById('loginStep2').classList.add('active');
-    startTimer(document.getElementById('l_otpTimer'), document.getElementById('l_resendBtn'), loginTimerHandle, h => { loginTimerHandle = h; });
+    setFieldError('l_fieldMobile', !validMobile(mobile));
+    setFieldError('l_fieldPassword', !password);
+
+    if(!validMobile(mobile) || !password) { 
+      toast('Please verify form inputs.', 'err'); 
+      return; 
+    }
+    
+    try {
+      // Direct post payload request to app.py database validator
+      const response = await fetch(`${BACKEND_API}/login/verify-credentials`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ mobile: mobile, password: password })
+      });
+      
+      const data = await response.json();
+      
+      if (response.ok) {
+        setFieldError('l_fieldPassword', false);
+        loginMobile = mobile; 
+        loginPendingOtp = data.otp || generateOtp(); // Fallback dynamic generation if simulation active
+        
+        document.getElementById('loginOtpDisplay').textContent = maskMobile(mobile);
+        toast('📱 Seller Login OTP: ' + loginPendingOtp, 'info');
+        
+        document.getElementById('loginStep1').classList.remove('active');
+        document.getElementById('loginStep2').classList.add('active');
+        
+        startTimer(document.getElementById('l_otpTimer'), document.getElementById('l_resendBtn'), loginTimerHandle, h => { loginTimerHandle = h; });
+      } else {
+        toast(data.message || 'Incorrect mobile number or password.', 'err');
+        setFieldError('l_fieldPassword', true);
+      }
+    } catch (err) {
+      toast('Server validation connection failed.', 'err');
+    }
   };
 
   window.loginVerifyOtp = function(){
-    if(document.getElementById('l_otp').value.trim() !== loginPendingOtp){ toast('Incorrect OTP.', 'err'); return; }
+    if(document.getElementById('l_otp').value.trim() !== loginPendingOtp){ 
+      toast('Incorrect OTP confirmation code.', 'err'); 
+      return; 
+    }
     currentUser = { name: "TRENDTEES Owner", mobile: loginMobile };
     enterDashboard();
   };
 
-  window.signupStep1Submit = function(){
+  /* ============================================================
+     SIGNUP FLOW WITH BACKEND API INTERACTION
+     ============================================================ */
+  window.signupStep1Submit = async function(){
     const name = document.getElementById('s_name').value.trim();
     const mobile = document.getElementById('s_mobile').value.trim();
-    if(!name || !validMobile(mobile)) { toast('Verify your form inputs.', 'err'); return; }
-    staged = { name, mobile };
-    signupPendingOtp = generateOtp();
-    document.getElementById('signupOtpDisplay').textContent = maskMobile(mobile);
-    toast('📱 Seller Registration OTP: ' + signupPendingOtp, 'info');
-    document.getElementById('signupStep1').classList.remove('active');
-    document.getElementById('signupStep2').classList.add('active');
+    const password = document.getElementById('s_password').value;
+    const confirm = document.getElementById('s_confirm').value;
+
+    setFieldError('s_fieldName', !name);
+    setFieldError('s_fieldMobile', !validMobile(mobile));
+    setFieldError('s_fieldPassword', password.length < 8);
+    setFieldError('s_fieldConfirm', password !== confirm);
+
+    if(!name || !validMobile(mobile) || password.length < 8 || password !== confirm) { 
+      toast('Verify fields completely.', 'err'); 
+      return; 
+    }
+
+    try {
+      const response = await fetch(`${BACKEND_API}/signup/register-seller`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, mobile, password })
+      });
+      
+      const data = await response.json();
+      
+      if(response.ok) {
+        staged = { name, mobile };
+        signupPendingOtp = data.otp || generateOtp();
+        document.getElementById('signupOtpDisplay').textContent = maskMobile(mobile);
+        toast('📱 Seller Registration OTP: ' + signupPendingOtp, 'info');
+        document.getElementById('signupStep1').classList.remove('active');
+        document.getElementById('signupStep2').classList.add('active');
+      } else {
+        toast(data.message || 'Mobile number already registered.', 'err');
+        setFieldError('s_fieldMobile', true);
+      }
+    } catch(err) {
+      toast('Server registration error.', 'err');
+    }
   };
 
   window.signupVerifyOtp = function(){
-    if(document.getElementById('s_otp').value.trim() !== signupPendingOtp){ toast('Invalid code.', 'err'); return; }
+    if(document.getElementById('s_otp').value.trim() !== signupPendingOtp){ 
+      toast('Invalid verification code.', 'err'); 
+      return; 
+    }
     currentUser = { name: staged.name, mobile: staged.mobile };
     document.getElementById('signupDoneDisplay').textContent = staged.name;
     document.getElementById('signupStep2').classList.remove('active');
@@ -855,7 +906,7 @@
     document.getElementById('profileNameDisplay').textContent = currentUser.name;
     document.getElementById('profileMobileDisplay').textContent = '+91 ' + currentUser.mobile;
     syncWithBackend();
-    setInterval(syncWithBackend, 4000); // Poll server status every 4s safely
+    setInterval(syncWithBackend, 4000); 
   }
 
   document.getElementById('logoutBtn').addEventListener('click', function(){
@@ -871,11 +922,10 @@
   });
 
   /* ============================================================
-     REAL LIVE INVENTORY UPLOAD (HITS FLASK API)
+     INVENTORY FORMS & CONTROLS
      ============================================================ */
   const pImage = document.getElementById('pImage');
   const uploadPreview = document.getElementById('uploadPreview');
-  let pendingImageSrc = '';
 
   pImage.addEventListener('change', function(){
     const file = this.files[0]; if(!file) return;
@@ -898,13 +948,12 @@
 
     if(!name || isNaN(price) || isNaN(stock)){ toast('Fields cannot be empty.', 'err'); return; }
 
-    // Direct asynchronous post payload to app.py
     try {
       const response = await fetch(`${BACKEND_API}/products`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          id: String(Date.now()).slice(-4), // Clean short ID generation
+          id: String(Date.now()).slice(-4), 
           name: name,
           price: price,
           stock: stock,
@@ -920,7 +969,7 @@
         toast('Server side validation failed.', 'err');
       }
     } catch(err) {
-      toast('Cannot connect to Python. Ensure port 5001 is active.', 'err');
+      toast('Cannot connect to Python API database.', 'err');
     }
   });
 
