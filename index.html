@@ -245,8 +245,10 @@
 
   function esc(str){ const d = document.createElement('div'); d.textContent = str; return d.innerHTML; }
   function validMobile(v){ return /^[6-9]\d{9}$/.test(v.trim()); }
-  function generateOtp(){ return String(Math.floor(100000 + Math.random() * 900000)); }
-
+  // 🌟 FIXED: Added complete function body layer properly
+function generateOtp() { 
+  return String(Math.floor(100000 + Math.random() * 900000)); 
+}
   async function syncWithBackend() {
     try {
       const prodRes = await fetch(`${BACKEND_API}/products`);
