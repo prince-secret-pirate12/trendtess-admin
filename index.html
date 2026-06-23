@@ -245,7 +245,7 @@
 
   function esc(str){ const d = document.createElement('div'); d.textContent = str; return d.innerHTML; }
   function validMobile(v){ return /^[6-9]\d{9}$/.test(v.trim()); }
-  function generateOtp();
+  function generateOtp(){ return String(Math.floor(100000 + Math.random() * 900000)); }
 
   async function syncWithBackend() {
     try {
@@ -258,7 +258,7 @@
       const ordRes = await fetch(`${BACKEND_API}/orders`);
       if(ordRes.ok) { orders = await ordRes.json(); }
       renderAll();
-    } catch (err) { toast('API system error.', 'err'); }
+    } catch (err) { console.error(err); }
   }
 
   window.switchTab = function(tab){
@@ -327,8 +327,6 @@
     document.getElementById('userIdDisplay').innerHTML = esc(currentUser.name) + '<small>Owner</small>';
     document.getElementById('profileNameDisplay').textContent = currentUser.name;
     document.getElementById('profileMobileDisplay').textContent = '+91 ' + currentUser.mobile;
-    
-    // 🌟 LOAD ONCE: Heavy infinite setInterval background thread completely deleted
     syncWithBackend(); 
   }
 
@@ -403,8 +401,6 @@
     document.getElementById('statOrders').textContent = orders.length;
     document.getElementById('statPending').textContent = orders.filter(o => o.status !== 'Shipped').length;
   }
-
-  function generateOtp(){ return String(Math.floor(100000 + Math.random() * 900000)); }
 
   document.querySelectorAll('.nav-item').forEach(btn => {
     btn.addEventListener('click', function(){
